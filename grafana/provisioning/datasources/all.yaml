@@ -10,3 +10,7 @@ datasources:
     type: 'jaeger'
     access: 'proxy'
     url: 'http://jaeger-all-in-one:16686'
+  - name: 'graphite'
+    type: 'graphite'
+    access: 'proxy'
+    url: 'http://graphite-statsd:80'
