@@ -20,10 +20,6 @@ exporters:
     endpoint: "jaeger-all-in-one:14250"
     insecure: true
 
-  # Export to a file
-  file:
-    path: /etc/output/logs.json
-
 # Configure processors (batch, sampling, filtering, hashing sensitive data, etc.)
 # https://opentelemetry.io/docs/collector/configuration/#processors
 processors:
@@ -47,4 +43,4 @@ service:
     logs:
       receivers: [otlp]
       processors: []
-      exporters: [logging, file]
+      exporters: [logging]
