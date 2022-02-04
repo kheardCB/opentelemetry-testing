@@ -23,6 +23,10 @@ exporters:
 # Configure processors (batch, sampling, filtering, hashing sensitive data, etc.)
 # https://opentelemetry.io/docs/collector/configuration/#processors
 processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_percentage: 50
+    spike_limit_percentage: 30
   batch:
 
 # Configure pipelines. Pipeline defines a path the data follows in the Collector
@@ -34,11 +38,11 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch]
+      processors: [memory_limiter, batch]
       exporters: [logging, jaeger]
     metrics:
       receivers: [otlp]
-      processors: [batch]
+      processors: [memory_limiter, batch]
       exporters: [logging, prometheus]
     logs:
       receivers: [otlp]
